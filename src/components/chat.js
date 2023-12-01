@@ -1,6 +1,6 @@
 // src/ChatComponent.js
 import React, { useState, useRef, useEffect } from 'react';
-const axios = require('axios');
+import axios from 'axios';
 
 const ChatComponent = () => {
   const [inputMessage, setInputMessage] = useState('');
