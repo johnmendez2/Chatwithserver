@@ -1,6 +1,6 @@
 // src/ChatComponent.js
 import React, { useState, useRef, useEffect } from 'react';
-import axios from 'axios';
+const axios = require('axios');
 
 const ChatComponent = () => {
   const [inputMessage, setInputMessage] = useState('');
@@ -93,12 +93,12 @@ useEffect(() => {
         <div style={{ textAlign: 'center', margin: '20px 0' }}>
           <img
             src="https://big4accountingfirms.com/wp-content/uploads/Deloitte.svg.png"
-            alt="Deloitte"
+            alt="Dl"
             style={{ width: '300px', marginRight: '20px' }}
           />
           <img
             src="https://seeklogo.com/images/V/visit-saudi-logo-A943496290-seeklogo.com.png"
-            alt="Saudi"
+            alt="Image 2"
             style={{ width: '200px' }}
           />
         </div>
