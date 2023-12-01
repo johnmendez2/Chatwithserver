@@ -59,4 +59,4 @@ jobs:
           app-name: 'stachat'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_72ED802B2A8B4D2E81249671CC71EECB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_02A6DDDD50034E75B5C6980D902A1EFA }}
