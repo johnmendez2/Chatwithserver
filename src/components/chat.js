@@ -93,12 +93,12 @@ useEffect(() => {
         <div style={{ textAlign: 'center', margin: '20px 0' }}>
           <img
             src="https://big4accountingfirms.com/wp-content/uploads/Deloitte.svg.png"
-            alt="Dl"
+            alt="Deloitte"
             style={{ width: '300px', marginRight: '20px' }}
           />
           <img
             src="https://seeklogo.com/images/V/visit-saudi-logo-A943496290-seeklogo.com.png"
-            alt="Image 2"
+            alt="Saudi"
             style={{ width: '200px' }}
           />
         </div>
