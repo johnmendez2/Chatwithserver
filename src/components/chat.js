@@ -50,7 +50,7 @@ const ChatComponent = () => {
   
     try {
       // Make the POST request to the relative path (/process_query)
-      const response = await axios.post('https://stagpt35model.azurewebsites.net/process_query' +'/process_query', { query: sendInput }, {
+      const response = await axios.post('https://stagpt35model.azurewebsites.net' +'/process_query', { query: sendInput }, {
         headers: { 'Content-Type': 'application/json' },
       });
   
