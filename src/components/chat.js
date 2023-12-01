@@ -90,16 +90,16 @@ useEffect(() => {
 
       <div style={{ flex: 1, position: 'relative' }}>
         {/* Container for two centered images */}
-        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <div style={{ textAlign: 'center', position:'fixed', background:'white', paddingTop:'10px', width:'84%' }}>
           <img
             src="https://big4accountingfirms.com/wp-content/uploads/Deloitte.svg.png"
             alt="Deloitte"
-            style={{ width: '300px', marginRight: '20px' }}
+            style={{ width: '20%', marginRight: '20px' }}
           />
           <img
             src="https://seeklogo.com/images/V/visit-saudi-logo-A943496290-seeklogo.com.png"
             alt="Saudi"
-            style={{ width: '200px' }}
+            style={{ width: '13%' }}
           />
         </div>
         <div
@@ -108,14 +108,15 @@ useEffect(() => {
             minHeight: 'calc(100vh - 60px)',
             border: '1px solid #ccc',
             padding: '10px',
-            marginBottom: '20px',
+            marginBottom: '3rem',
             overflowY: 'auto',
             paddingLeft:'100px',
+            marginTop:'10%',
             paddingRight:'100px'
           }}
         >
           {chatHistory.map((chat, index) => (
-            <div key={index} style={{ marginBottom: '10px', fontSize: '20px', color: chat.type === 'user' ? 'green' : 'black' }}>
+            <div key={index} style={{marginBottom: '10px', fontSize: '20px', color: chat.type === 'user' ? 'green' : 'black' }}>
               {Array.isArray(chat.message) ? (
                 chat.message.map((line, i) => (
                   <div key={i}>{line}</div>
@@ -136,7 +137,7 @@ useEffect(() => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '50px',
+            padding: '0px 30px 10px 30px',
             boxSizing: 'border-box',
             backgroundColor: '#fff',
           }}
@@ -147,7 +148,7 @@ useEffect(() => {
             value={inputMessage}
             onChange={handleInputChange}
             onKeyDown={handleInputKeyDown}
-            style={{ flex: 1, marginRight: '10px', paddingTop: '15px', paddingBottom: '15px' }}
+            style={{ flex: 1, marginRight: '10px', paddingTop: '15px', paddingBottom: '15px', fontSize:'15px' }}
           />
           <button onClick={sendMessage} style={{ backgroundColor: '#359eeb', color: '#fff', padding: '15px 30px', border: 'none' }}>
             Send
