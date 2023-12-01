@@ -82,55 +82,77 @@ useEffect(() => {
   }, [chatHistory]);
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', boxSizing: 'border-box' }}>
-      <div
-        ref={chatContainerRef}
-        style={{
-          minHeight: 'calc(100vh - 60px)',
-          border: '1px solid #ccc',
-          padding: '10px',
-          marginBottom: '20px',
-          overflowY: 'auto',
-        }}
-      >
-        {chatHistory.map((chat, index) => (
-          <div key={index} style={{ marginBottom: '10px', color: chat.type === 'user' ? 'blue' : 'green' }}>
-            {Array.isArray(chat.message) ? (
-              chat.message.map((line, i) => (
-                <div key={i}>{line}</div>
-              ))
-            ) : (
-              chat.message.split('\n').map((line, i) => (
-                <div key={i}>{line}</div>
-              ))
-            )}
-          </div>
-        ))}
+    <div style={{ display: 'flex', minHeight: '100vh', boxSizing: 'border-box' }}>
+      {/* Black sidebar */}
+      <div style={{ width: '16%', backgroundColor: '#1c1c1c', padding: '20px' }}>
+        {/* Add any content or components for the sidebar here */}
       </div>
-      <div
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '10px',
-          boxSizing: 'border-box',
-          backgroundColor: '#fff',
-        }}
-      >
-        <input
-          type="text"
-          placeholder="Type your message..."
-          value={inputMessage}
-          onChange={handleInputChange}
-          onKeyDown={handleInputKeyDown}
-          style={{ flex: 1, marginRight: '10px', paddingTop:'10px', paddingBottom:'10px' }}
-        />
-        <button onClick={sendMessage} style={{ backgroundColor: '#359eeb', color: '#fff', padding: '8px 16px' }}>
-          Send
-        </button>
+
+      <div style={{ flex: 1, position: 'relative' }}>
+        {/* Container for two centered images */}
+        <div style={{ textAlign: 'center', margin: '20px 0' }}>
+          <img
+            src="https://big4accountingfirms.com/wp-content/uploads/Deloitte.svg.png"
+            alt="Image 1"
+            style={{ width: '300px', marginRight: '20px' }}
+          />
+          <img
+            src="https://seeklogo.com/images/V/visit-saudi-logo-A943496290-seeklogo.com.png"
+            alt="Image 2"
+            style={{ width: '200px' }}
+          />
+        </div>
+        <div
+          ref={chatContainerRef}
+          style={{
+            minHeight: 'calc(100vh - 60px)',
+            border: '1px solid #ccc',
+            padding: '10px',
+            marginBottom: '20px',
+            overflowY: 'auto',
+            paddingLeft:'100px',
+            paddingRight:'100px'
+          }}
+        >
+          {chatHistory.map((chat, index) => (
+            <div key={index} style={{ marginBottom: '10px', fontSize: '20px', color: chat.type === 'user' ? 'green' : 'black' }}>
+              {Array.isArray(chat.message) ? (
+                chat.message.map((line, i) => (
+                  <div key={i}>{line}</div>
+                ))
+              ) : (
+                chat.message.split('\n').map((line, i) => (
+                  <div key={i}>{line}</div>
+                ))
+              )}
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            position: 'fixed',
+            bottom: 0,
+            width: '81%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '50px',
+            boxSizing: 'border-box',
+            backgroundColor: '#fff',
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Type your message..."
+            value={inputMessage}
+            onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
+            style={{ flex: 1, marginRight: '10px', paddingTop: '15px', paddingBottom: '15px' }}
+          />
+          <button onClick={sendMessage} style={{ backgroundColor: '#359eeb', color: '#fff', padding: '15px 30px', border: 'none' }}>
+            Send
+          </button>
+        </div>
       </div>
     </div>
   );
