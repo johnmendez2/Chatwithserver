@@ -6,44 +6,88 @@ const ChatComponent = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
   const chatContainerRef = useRef(null);
+  const [matchedCity, setMatchedCity] = useState(null);
+  const [recommendedQuestions, setRecommendedQuestions] = useState([
+    "Tell me about Saudi?",
+    "What should I do in Saudi?",
+    "What are some must-see places in Saudi?",
+    // Add more recommended questions as needed
+  ]);
+  // New state for images
+  const [displayImages, setDisplayImages] = useState([]);
+  // New state to track if streaming is done
+  const [isStreamingDone, setIsStreamingDone] = useState(false);
+  const cities = [
+    "riyadh", "diriyah", "dammam", "al-ahsa", "jeddah", "taif", "tabuk", "jazan", "abha",
+    "al-namas", "yanbu", "kaec", "al-baha", "alula", "hail", "al-jouf", "makkah", "medina",
+    "qassim", "riyadh-province", "eastern-province", "makkah-province", "aseer", "jubail", "najran"
+  ];
+  const imgs = [
+    'https://book.visitsaudi.com/_next/image?url=%2Fapi%2Fimage-proxy%3Furl%3Dhttps%253A%252F%252Fhalayallaimages-new.s3.me-south-1.amazonaws.com%252Fimages%252Fvenues%252Fprovider_venue_653fab6c47e0c.&w=1920&q=85',
+    'https://book.visitsaudi.com/_next/image?url=%2Fapi%2Fimage-proxy%3Furl%3Dhttps%253A%252F%252Fhalayallaimages-new.s3.me-south-1.amazonaws.com%252Fimages%252Fvenues%252Fprovider_venue_656476ad492b5.&w=1920&q=85', 
+    'https://book.visitsaudi.com/_next/image?url=%2Fapi%2Fimage-proxy%3Furl%3Dhttps%253A%252F%252Fhalayallaimages-new.s3.me-south-1.amazonaws.com%252Fimages%252Fvenues%252Fprovider_venue_652e70cacf293.&w=1920&q=85', 
+    'https://book.visitsaudi.com/_next/image?url=%2Fapi%2Fimage-proxy%3Furl%3Dhttps%253A%252F%252Fhalayallaimages-new.s3.me-south-1.amazonaws.com%252Fimages%252Fvenues%252Fprovider_venue_653fac9873198.&w=1920&q=85']; // Add your image URLs here
 
 const handleInputChange = (e) => {
   setInputMessage(e.target.value);
 };
 
-  const simulateStreaming = async (words) => {
-    return new Promise((resolve) => {
-      let currentIndex = 0;
-  
-      const intervalId = setInterval(() => {
-        setChatHistory((prevHistory) => {
-          const updatedHistory = [...prevHistory];
-  
-          if (updatedHistory.length > 0 && updatedHistory[updatedHistory.length - 1].type === 'server') {
-            // Update the last system message with the new word
-            updatedHistory[updatedHistory.length - 1].message = words.slice(0, currentIndex).join(' ');
-          } else {
-            // If there is no system message, add a new one
-            updatedHistory.push({ type: 'server', message: words.slice(0, currentIndex).join(' ') });
-          }
-  
-          return updatedHistory;
-        });
-  
-        currentIndex += 1;
-  
-        if (currentIndex > words.length) {
-          clearInterval(intervalId);
-          resolve();
-        }
-      }, 40); // Adjust the duration between each word (in milliseconds)
-    });
-  };
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};
 
-  useEffect(() => {
-    // Scroll to the bottom of the page when chatHistory changes
-    window.scrollTo(0, document.body.scrollHeight);
-  }, [chatHistory]);
+const simulateStreaming = async (words) => {
+  for (let currentIndex = 0; currentIndex < words.length; currentIndex++) {
+    setChatHistory((prevHistory) => {
+      const updatedHistory = [...prevHistory];
+
+      if (updatedHistory.length > 0 && updatedHistory[updatedHistory.length - 1].type === 'server') {
+        const currentWord = words[currentIndex];
+
+        if (currentWord) {
+          const lowerCaseWord = currentWord.toLowerCase();
+          if (cities.includes(lowerCaseWord)) {
+            setMatchedCity(capitalizeFirstLetter(lowerCaseWord));
+          }
+
+          updatedHistory[updatedHistory.length - 1].message = words.slice(0, currentIndex + 1).join(' ');
+        }
+      } else {
+        updatedHistory.push({
+          type: 'server',
+          message: words.slice(0, currentIndex + 1).join(' '),
+          images: [...imgs],
+        });
+      }
+
+      return updatedHistory;
+    });
+
+    // Pause for 40 milliseconds before the next word
+    await new Promise(resolve => setTimeout(resolve, 40));
+  }
+
+  setIsStreamingDone(true);
+};
+useEffect(() => {
+  // Check if there is a matched city and update recommended questions accordingly
+  if (matchedCity) {
+    setRecommendedQuestions([
+      `Shopping in ${matchedCity}`,
+      `Restaurants in ${matchedCity}`,
+      `Experiences in ${matchedCity}`,
+    ]);
+  } else {
+    // If there was no city match, restore the default recommended questions
+    setRecommendedQuestions([
+      "Tell me about Saudi?",
+      "What should I do in Saudi?",
+      "What are some must-see places in Saudi?",
+      // Add more recommended questions as needed
+    ]);
+  }
+}, [matchedCity]);
+
   
   const sendMessage = async (message) => {
     if (!message.trim()) return;
@@ -68,22 +112,11 @@ const handleInputChange = (e) => {
       console.error('Error sending message:', error);
     }
   };
-  
-  
-
-// Scroll to the bottom of the chat container when a new message is added
-useEffect(() => {
-    if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
-    }
+  useEffect(() => {
+    // Scroll to the bottom of the page when chatHistory changes
+    window.scrollTo(0, document.body.scrollHeight);
   }, [chatHistory]);
 
-  const recommendedQuestions = [
-    "Tell me about Saudi?",
-    "What should I do in Saudi?",
-    "What are some must-see places in Saudi?",
-    // Add more recommended questions as needed
-  ];
 
   const handleRecommendedQuestionClick = (question) => {
     // Directly send the clicked question without updating inputMessage
@@ -99,6 +132,9 @@ useEffect(() => {
       sendMessage(inputMessage);
     }
   };
+  
+  
+
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', boxSizing: 'border-box' }}>
@@ -121,6 +157,7 @@ useEffect(() => {
             style={{ width: '200px' }}
           />
         </div>
+  
         <div
           ref={chatContainerRef}
           style={{
@@ -143,11 +180,21 @@ useEffect(() => {
               ) : (
                 chat.message.split('\n').map((line, i) => <div key={i}>{line}</div>)
               )}
+  
+              {/* Display images only if it's a server message */}
+              {/* {isStreamingDone && chat.type === 'server' && (
+                <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                  {chat.images.map((image, imgIndex) => (
+                    <img key={imgIndex} src={image} alt={`Image ${imgIndex + 1}`} style={{ width: '100px', height: 'auto', margin: '5px' }} />
+                  ))}
+                </div>
+              )} */}
             </div>
           ))}
         </div>
+  
         {/* Recommended Questions */}
-        <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '90px', position:'fixed', bottom:'0', zIndex:'4', marginLeft:'25px', marginTop:'50px' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', marginBottom: '90px', position: 'fixed', bottom: '0', zIndex: '4', marginLeft: '25px', marginTop: '50px' }}>
           {recommendedQuestions.map((question, index) => (
             <div
               key={index}
@@ -164,6 +211,7 @@ useEffect(() => {
             </div>
           ))}
         </div>
+  
         {/* Input */}
         <div
           style={{
@@ -173,29 +221,34 @@ useEffect(() => {
             padding: '20px',
             boxSizing: 'border-box',
             backgroundColor: '#fff',
-            width:'81%',
-            bottom:'0',
-            position:'fixed'
+            width: '81%',
+            bottom: '0',
+            position: 'fixed'
           }}
         >
-<input
-  type="text"
-  placeholder="Type your message..."
-  value={inputMessage}
-  onChange={handleInputChange}
-  onKeyDown={handleInputKeyDown}
-  style={{ flex: 1, marginRight: '10px', paddingTop: '15px', paddingBottom: '15px', marginTop: '50px' }}
-/>
-<button
-  onClick={() => sendMessage(inputMessage)}
-  style={{ backgroundColor: '#359eeb', color: '#fff', padding: '15px 30px', border: 'none', marginTop: '50px' }}
->
-  Send
-</button>
+          <input
+            type="text"
+            placeholder="Type your message..."
+            value={inputMessage}
+            onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
+            style={{ flex: 1, marginRight: '10px', paddingTop: '15px', paddingBottom: '15px', marginTop: '50px' }}
+          />
+          <button
+            onClick={() => sendMessage(inputMessage)}
+            style={{ backgroundColor: '#359eeb', color: '#fff', padding: '15px 30px', border: 'none', marginTop: '50px' }}
+          >
+            Send
+          </button>
         </div>
       </div>
     </div>
   );
+  
+  
+  
+  
+
 };
 
 export default ChatComponent;
