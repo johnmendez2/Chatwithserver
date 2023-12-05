@@ -39,6 +39,11 @@ const handleInputChange = (e) => {
       }, 40); // Adjust the duration between each word (in milliseconds)
     });
   };
+
+  useEffect(() => {
+    // Scroll to the bottom of the page when chatHistory changes
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [chatHistory]);
   
   const sendMessage = async (message) => {
     if (!message.trim()) return;
