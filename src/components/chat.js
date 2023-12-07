@@ -103,8 +103,10 @@ useEffect(() => {
         headers: { 'Content-Type': 'application/json' },
       });
   
+      setDisplayImages(response.data[1]);
       // Split the server response into an array of words
-      const serverMessageWords = response.data.result.split(' ');
+ 
+      const serverMessageWords = response.data[0].result.split(' ');
   
       // Simulate streaming effect
       await simulateStreaming(serverMessageWords);
