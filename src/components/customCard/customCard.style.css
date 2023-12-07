@@ -1,0 +1,40 @@
+.cardContainer{
+   display: flex;
+   flex-direction: column;
+   width: 250px;
+   border-radius: 20px;
+   height: 250px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   margin-bottom: 20px;
+   cursor: pointer;
+   text-decoration: none;
+}
+.cardContainer:active{
+   opacity: 0.8;
+}
+.cardImage {
+min-width: 100%;
+min-height:  75%;
+max-height: 75%;
+max-width: 100%;
+border-top-right-radius: 20px;
+border-top-left-radius:20px ;
+}
+.cardTitleStyle{
+font-size: 16px;
+font-weight: 500;
+height: 20px;
+padding: 15px 15px 0px 15px;
+color: #be018d;
+text-align: center;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+width: 93%;
+}
+.subTextStyle{
+   font-size: 11px;
+   flex:1;
+   padding: 10px 5px 10px 15px;
+   color: black
+}

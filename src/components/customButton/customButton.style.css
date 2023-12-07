@@ -1,0 +1,26 @@
+.buttonActiveContainer{
+    display: flex;
+    background-color: #78006d;
+    min-width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border-top-right-radius: 0px ;
+    border: none;
+    margin-right: 10px;
+    padding: 5px 10px;
+    align-items: center;
+    color: white
+}
+.buttonContainer{
+    display: flex;
+    background-color: #be018d;
+    min-width: 100px;
+    height: 30px;
+    border-radius: 15px;
+    border-top-right-radius: 0px ;
+    border: none;
+    margin-right: 10px;
+    padding: 5px 10px;
+    align-items: center;
+    color: white
+}
