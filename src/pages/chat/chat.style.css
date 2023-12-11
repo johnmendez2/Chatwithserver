@@ -1,7 +1,7 @@
-.mainContainer{
+  .mainContainer{
 background-color: #f3f4ef;
-display: flex; 
-min-height: 100vh; 
+display: flex;
+min-height: 100vh;
 box-sizing: border-box;
 }
 .chatContainer{
@@ -22,12 +22,12 @@ box-sizing: border-box;
 .chatTextContainer {
     min-height: calc(60vh);
     padding: 10px;
-    margin-bottom:  20vh;
+    margin-bottom:  20px;
     overflow-y:  auto;
     padding-left:  30px;
     display: flex;
     justify-content: space-between;
-min-width: 300px;
+    min-width: 300px;
 }
 .chatInputContainer{
     display: flex;
@@ -62,9 +62,9 @@ min-width: 300px;
     margin-left: 25px;
     /* margin-top: 50px; */
     cursor: pointer;
-
+ 
 }
-
+ 
 .quickResponseItem{
         cursor: pointer;
         margin-left: 10px;
@@ -79,28 +79,31 @@ min-width: 300px;
     border: none;
     margin-top:  50px;
     border-radius: 15px;
-
+ 
 }
 .deloitteLogoStyle{
     width: 170px; height: 45px; padding-bottom: 15px;
-
+ 
 }
-
+ 
 .logoStyle{
     width: 150px ; height: 150px; margin-right: 20px; margin-bottom: -35px;
 }
-
+ 
 .imagesContainer{
     display: grid;
 flex: 0.7;
 grid-template-columns: repeat(2, 1fr);
-
+ 
 justify-items: center;
-
+ 
 align-content: flex-start;
-
+ 
 }
 .responseContainer {
     flex: 1;
     margin-right: 2pc;
+}
+.userInputContainer{
+    padding-top: 20vh;
 }
