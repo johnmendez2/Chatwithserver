@@ -229,38 +229,40 @@ export default function ChatComponent(params) {
           <div className="imagesContainer">{renderImages()}</div>
         </div>
 
-        {/* Recommended Questions */}
-        <div className="quickResponseContainer">
-          {recommendedQuestions.map((question, index) => (
-            <div
-              key={index}
-              onClick={() => handleRecommendedQuestionClick(question)}
+                {/* Recommended Questions */}
+                <div className="userInputContainer">
+          <div className="quickResponseContainer">
+            {recommendedQuestions.map((question, index) => (
+              <div
+                key={index}
+                onClick={() => handleRecommendedQuestionClick(question)}
+              >
+                <CustomButton
+                  title={question}
+                  active={active === question ? true : false}
+                />
+              </div>
+            ))}
+          </div>
+ 
+          {/* Input */}
+          <div className="chatInputContainer">
+            <input
+              type="text"
+              placeholder="Type your message..."
+              value={inputMessage}
+              onChange={handleInputChange}
+              onKeyDown={handleInputKeyDown}
+              className="inputContainer"
+            />
+            <button
+              onClick={() => sendMessage(inputMessage)}
+              className="sendButtonStyle"
             >
-              <CustomButton
-                title={question}
-                active={active === question ? true : false}
-              />
-            </div>
-          ))}
-        </div>
-
-        {/* Input */}
-        <div className="chatInputContainer">
-          <input
-            type="text"
-            placeholder="Type your message..."
-            value={inputMessage}
-            onChange={handleInputChange}
-            onKeyDown={handleInputKeyDown}
-            className="inputContainer"
-          />
-          <button
-            onClick={() => sendMessage(inputMessage)}
-            className="sendButtonStyle"
-          >
-            Send
-          </button>
-        </div>
+              Send
+            </button>
+          </div>
+          </div>
       </div>
     </div>
   );
