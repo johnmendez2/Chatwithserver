@@ -145,7 +145,7 @@ export default function ChatComponent(params) {
     // Display the user input immediately
 
     setChatHistory((prevHistory) => [
-      ...prevHistory,
+      //...prevHistory,
       { type: 'user', message: sendInput },
     ]);
 
