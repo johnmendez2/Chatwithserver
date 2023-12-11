@@ -8,7 +8,7 @@ export default function CustomCard(params) {
       <a href={url} target="_blank" rel="noreferrer" className="cardContainer">
         <img className="cardImage" src={image} alt="Discover" />
         <div className="cardTitleStyle">{title}</div>
-        <text className="subTextStyle">{description}</text>
+        {/* <text className="subTextStyle">{description}</text> */}
       </a>
     </div>
   );

@@ -1,7 +1,7 @@
-  .mainContainer{
+.mainContainer{
 background-color: #f3f4ef;
-display: flex;
-min-height: 100vh;
+display: flex; 
+min-height: 'fit-content'; 
 box-sizing: border-box;
 }
 .chatContainer{
@@ -12,7 +12,7 @@ box-sizing: border-box;
 }
 .logoContainer{
     /* text-align: center ;  */
-    margin: 20px 30px;
+    margin: -20px 27px 0px 10px;
 }
 .sideBar{
     width: 112px;
@@ -22,7 +22,7 @@ box-sizing: border-box;
 .chatTextContainer {
     min-height: calc(60vh);
     padding: 10px;
-    margin-bottom:  20px;
+    margin-bottom:  5vh;
     overflow-y:  auto;
     padding-left:  30px;
     display: flex;
@@ -45,64 +45,68 @@ box-sizing: border-box;
     margin-left : 5px;
     padding-top:  15px;
     padding-bottom : 15px;
-    margin-top:  50px;
+    margin-top:  25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border:none;
     border-radius: 15px;
     width: 90%;
     padding-left: 10px;
+    height: 5px;
+
 }
 .quickResponseContainer{
     display: flex;
     flex-direction: row;
-    margin-bottom: 120px;
+    margin-bottom: 110px;
     position: fixed;
     bottom: 0;
     z-index: 4;
     margin-left: 25px;
     /* margin-top: 50px; */
     cursor: pointer;
- 
+
 }
- 
+
 .quickResponseItem{
         cursor: pointer;
         margin-left: 10px;
-        padding: 10px;
+        padding: 15px;
         background-color: lightgrey;
         border-radius: 5px;
     }
 .sendButtonStyle{
     background-color: #78006d;
     color: #fff;
-    padding: 15px 30px;
+    padding: 18px 30px;
     border: none;
-    margin-top:  50px;
+    margin-top:  25px;
     border-radius: 15px;
- 
+    height: 5px;
+    display: flex;
+    align-items: center;
 }
 .deloitteLogoStyle{
     width: 170px; height: 45px; padding-bottom: 15px;
- 
+
 }
- 
+
 .logoStyle{
     width: 150px ; height: 150px; margin-right: 20px; margin-bottom: -35px;
 }
- 
+
 .imagesContainer{
     display: grid;
 flex: 0.7;
 grid-template-columns: repeat(2, 1fr);
- 
+
 justify-items: center;
- 
+
 align-content: flex-start;
- 
+
 }
 .responseContainer {
     flex: 1;
-    margin-right: 2pc;
+    margin-right: 1pc;
 }
 .userInputContainer{
     padding-top: 20vh;

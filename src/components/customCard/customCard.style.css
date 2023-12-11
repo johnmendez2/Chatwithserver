@@ -4,6 +4,8 @@
    width: 15.625rem;
    border-radius: 20px;
    height: 15.625rem;
+   max-width: 20vw;
+   max-height: 20vw;
    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
    margin: 0px 0.5rem 20px 0.5rem;
    cursor: pointer;
@@ -14,17 +16,17 @@
 }
 .cardImage {
 min-width: 100%;
-min-height:  75%;
-max-height: 75%;
+min-height: 80%;
+max-height: 80%;
 max-width: 100%;
 border-top-right-radius: 20px;
 border-top-left-radius:20px ;
 }
 .cardTitleStyle{
-font-size: 16px;
+font-size: calc(0.8*(1vh + 1vw));
 font-weight: 500;
-height: 20px;
-padding: 15px 15px 0px 15px;
+/* height: 20px; */
+padding: 10px 10px 0px;
 color: #be018d;
 text-align: center;
 white-space: nowrap;

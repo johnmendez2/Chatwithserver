@@ -8,7 +8,7 @@ export default function CustomButton(params) {
   return (
     <>
       <div className={active ? 'buttonActiveContainer' : 'buttonContainer'}>
-        <text>{title}</text>
+        <text className="buttonTitleStyle">{title}</text>
       </div>
     </>
   );

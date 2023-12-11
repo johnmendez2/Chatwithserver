@@ -135,18 +135,25 @@ export default function ChatComponent(params) {
 
   const sendMessage = async (message) => {
     if (!message.trim()) return;
+
     const sendInput = message;
+
     // Clear the input field immediately after making the POST request
+
     setInputMessage('');
+
     // Display the user input immediately
+
     setChatHistory((prevHistory) => [
       ...prevHistory,
       { type: 'user', message: sendInput },
     ]);
+
     try {
       // Make the POST request to the relative path (/process_query)
+
       const response = await axios.post(
-        'https://stagpt35model.azurewebsites.net' + '/process_query',
+        'https://stagpt35model.azurewebsites.net' + '/process_query',,
         { query: sendInput },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -154,9 +161,11 @@ export default function ChatComponent(params) {
       );
       setDisplayImages(response.data[1]);
       // Split the server response into an array of words
- 
+
       const serverMessageWords = response.data[0].result.split(' ');
+
       // Simulate streaming effect
+
       await simulateStreaming(serverMessageWords);
     } catch (error) {
       console.error('Error sending message:', error);
@@ -205,7 +214,7 @@ export default function ChatComponent(params) {
                 key={index}
                 style={{
                   marginBottom: '10px',
-                  fontSize: '20px',
+                  fontSize: 'calc(1*(1vh + 1vw))',
                   color: chat.type === 'user' ? '#be018d' : 'black',
                 }}
               >
@@ -229,8 +238,8 @@ export default function ChatComponent(params) {
           <div className="imagesContainer">{renderImages()}</div>
         </div>
 
-                {/* Recommended Questions */}
-                <div className="userInputContainer">
+        {/* Recommended Questions */}
+        <div className="userInputContainer">
           <div className="quickResponseContainer">
             {recommendedQuestions.map((question, index) => (
               <div
@@ -244,7 +253,7 @@ export default function ChatComponent(params) {
               </div>
             ))}
           </div>
- 
+
           {/* Input */}
           <div className="chatInputContainer">
             <input
@@ -262,7 +271,7 @@ export default function ChatComponent(params) {
               Send
             </button>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );
