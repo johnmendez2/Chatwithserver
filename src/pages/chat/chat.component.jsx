@@ -19,7 +19,7 @@ export default function ChatComponent(params) {
   ]);
   const [active, setActive] = useState();
   // New state for images
-  const [displayImages, setDisplayImages] = useState([]);
+  const [displayImages, setDisplayImages] = useState();
 
   // New state to track if streaming is done
   const [isStreamingDone, setIsStreamingDone] = useState(false);
@@ -76,7 +76,7 @@ export default function ChatComponent(params) {
     for (let currentIndex = 0; currentIndex < words.length; currentIndex++) {
       setChatHistory((prevHistory) => {
         const updatedHistory = [...prevHistory];
-        console.log(updatedHistory.length);
+
         if (
           updatedHistory.length > 0 &&
           updatedHistory[updatedHistory.length - 1].type === 'server'
@@ -144,16 +144,13 @@ export default function ChatComponent(params) {
 
     // Display the user input immediately
 
-    setChatHistory((prevHistory) => [
-      //...prevHistory,
-      { type: 'user', message: sendInput },
-    ]);
+    setChatHistory((prevHistory) => [{ type: 'user', message: sendInput }]);
 
     try {
       // Make the POST request to the relative path (/process_query)
 
       const response = await axios.post(
-        'https://stagpt35model.azurewebsites.net' + '/process_query',
+        '/process_query',
         { query: sendInput },
         {
           headers: { 'Content-Type': 'application/json' },
@@ -162,7 +159,9 @@ export default function ChatComponent(params) {
       setDisplayImages(response.data[1]);
       // Split the server response into an array of words
 
-      const serverMessageWords = response.data[0].result.split(' ');
+      const serverMessageWords = response.data[0].result
+        .replaceAll('\n', '<br/>')
+        .split(' ');
 
       // Simulate streaming effect
 
@@ -219,10 +218,17 @@ export default function ChatComponent(params) {
                 }}
               >
                 {Array.isArray(chat.message)
-                  ? chat.message.map((line, i) => <div key={i}>{line}</div>)
+                  ? chat.message.map((line, i) => (
+                      <div key={i} dangerouslySetInnerHTML={{ __html: line }} />
+                    ))
                   : chat.message
                       .split('\n')
-                      .map((line, i) => <div key={i}>{line}</div>)}
+                      .map((line, i) => (
+                        <div
+                          key={i}
+                          dangerouslySetInnerHTML={{ __html: line }}
+                        />
+                      ))}
 
                 {/* Display images only if it's a server message */}
                 {/* {isStreamingDone && chat.type === 'server' && (
@@ -235,7 +241,23 @@ export default function ChatComponent(params) {
               </div>
             ))}
           </div>
-          <div className="imagesContainer">{renderImages()}</div>
+          <div>
+            {displayImages ? (
+              <>
+                <div
+                  style={{
+                    marginBottom: '15px',
+                    marginLeft: '10px',
+                    fontSize: 'calc(1*(1vh + 1vw))',
+                    color: '#be018d',
+                  }}
+                >
+                  Related links:
+                </div>
+                <div className="imagesContainer">{renderImages()}</div>
+              </>
+            ) : null}
+          </div>
         </div>
 
         {/* Recommended Questions */}
