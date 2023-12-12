@@ -150,7 +150,7 @@ export default function ChatComponent(params) {
       // Make the POST request to the relative path (/process_query)
 
       const response = await axios.post(
-        '/process_query',
+        'https://stagpt35model.azurewebsites.net' +'/process_query',
         { query: sendInput },
         {
           headers: { 'Content-Type': 'application/json' },
