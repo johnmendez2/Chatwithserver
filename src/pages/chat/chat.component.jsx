@@ -160,7 +160,7 @@ export default function ChatComponent(params) {
       // Split the server response into an array of words
 
       const serverMessageWords = response.data[0].result
-        .replaceAll('\n', '<br/>')
+        .replaceAll('\n-', '<p style="margin-left:20px;display: list-item"/>')
         .split(' ');
 
       // Simulate streaming effect
