@@ -125,9 +125,9 @@ export default function ChatComponent(params) {
     } else {
       // If there was no city match, restore the default recommended questions
       setRecommendedQuestions([
-        'Tell me about Saudi?',
-        'What should I do in Saudi?',
-        'What are some must-see places in Saudi?',
+        'Tell me about Saudi',
+        'What should I do in Saudi',
+        'Travel essentials',
         // Add more recommended questions as needed
       ]);
     }
