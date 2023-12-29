@@ -118,7 +118,7 @@ export default function ChatComponent(params) {
     // Check if there is a matched city and update recommended questions accordingly
     if (matchedCity) {
       setRecommendedQuestions([
-        `Malls in ${matchedCity}`,
+        `Shopping in ${matchedCity}`,
         `Restaurants in ${matchedCity}`,
         `Experiences in ${matchedCity}`,
       ]);
