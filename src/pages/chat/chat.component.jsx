@@ -12,9 +12,9 @@ export default function ChatComponent(params) {
   const chatContainerRef = useRef(null);
   const [matchedCity, setMatchedCity] = useState(null);
   const [recommendedQuestions, setRecommendedQuestions] = useState([
-    'Tell me about Saudi?',
-    'What should I do in Saudi?',
-    'What are some must-see places in Saudi?',
+    'Tell me about Saudi',
+    'What should I do in Saudi',
+    'Travel essentials',
     // Add more recommended questions as needed
   ]);
   const [active, setActive] = useState();
