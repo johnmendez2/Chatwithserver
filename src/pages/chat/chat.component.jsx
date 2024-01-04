@@ -32,7 +32,6 @@ export default function ChatComponent(params) {
     'tabuk',
     'jazan',
     'abha',
-    'al-namas',
     'yanbu',
     'kaec',
     'alula',
@@ -40,10 +39,6 @@ export default function ChatComponent(params) {
     'makkah',
     'medina',
     'qassim',
-    'riyadh-province',
-    'eastern-province',
-    'makkah-province',
-    'aseer',
     'jubail',
     'najran',
   ];
