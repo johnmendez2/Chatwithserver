@@ -12,8 +12,8 @@ export default function ChatComponent(params) {
   const chatContainerRef = useRef(null);
   const [matchedCity, setMatchedCity] = useState(null);
   const [recommendedQuestions, setRecommendedQuestions] = useState([
-    'Tell me about Saudi',
-    'What should I do in Saudi',
+    'Phrases in Arabic',
+    'UNESCO Sites in Saudi',
     'Travel essentials',
     // Add more recommended questions as needed
   ]);
@@ -117,9 +117,9 @@ export default function ChatComponent(params) {
     } else {
       // If there was no city match, restore the default recommended questions
       setRecommendedQuestions([
-        'Tell me about Saudi',
-        'What should I do in Saudi',
-        'Travel essentials',
+      'Phrases in Arabic',
+      'UNESCO Sites in Saudi',
+      'Travel essentials',
         // Add more recommended questions as needed
       ]);
     }
