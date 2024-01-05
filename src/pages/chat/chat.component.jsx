@@ -14,7 +14,7 @@ export default function ChatComponent(params) {
   const [recommendedQuestions, setRecommendedQuestions] = useState([
       'Phrases in Arabic',
       'Umrah in Saudi',
-      'Sites in Saudi',
+      'History of Saudi',
     // Add more recommended questions as needed
   ]);
   const [active, setActive] = useState();
@@ -119,7 +119,7 @@ export default function ChatComponent(params) {
       setRecommendedQuestions([
       'Phrases in Arabic',
       'Umrah in Saudi',
-      'Sites in Saudi',
+      'History of Saudi',
         // Add more recommended questions as needed
       ]);
     }
